@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta Digital - Mecánica Automotriz</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #121c16;
+            --card-bg: #19261f;
+            --card-bg-hover: #213229;
+            --moss-green: #3d5a45;
+            --moss-accent: #52795f;
+            --green-glow: #84a98c;
+            --text-main: #f0f4f1;
+            --text-muted: #b2c2b9;
+            --whatsapp-color: #25d366;
+            --whatsapp-hover: #20ba5a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(61, 90, 69, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(82, 121, 95, 0.1) 0%, transparent 40%);
+        }
+
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(132, 169, 140, 0.2);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--moss-green), var(--green-glow));
+        }
+
+        .profile-img-container {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--green-glow);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 18px;
+            height: 18px;
+            background-color: var(--whatsapp-color);
+            border: 3px solid var(--card-bg);
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .profile-title {
+            font-size: 0.95rem;
+            color: var(--green-glow);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .profile-bio {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .btn-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--card-bg-hover);
+            border: 1px solid rgba(132, 169, 140, 0.15);
+            padding: 14px 18px;
+            border-radius: 14px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-link:hover {
+            background-color: var(--moss-green);
+            border-color: var(--green-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(61, 90, 69, 0.3);
+        }
+
+        .btn-link .left-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-link i {
+            font-size: 1.2rem;
+            color: var(--green-glow);
+            transition: color 0.3s ease;
+        }
+
+        .btn-link:hover i {
+            color: var(--text-main);
+        }
+
+        .btn-link .fa-chevron-right {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp-color), var(--whatsapp-hover));
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp i {
+            color: #ffffff;
+            font-size: 1.3rem;
+        }
+
+        .btn-whatsapp:hover {
+            background: linear-gradient(135deg, var(--whatsapp-hover), #1da851);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            border-color: transparent;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(132, 169, 140, 0.15);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg-hover);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(132, 169, 140, 0.1);
+        }
+
+        .social-icon:hover {
+            background-color: var(--moss-accent);
+            color: var(--text-main);
+            transform: scale(1.1);
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--green-glow);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: left;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+z
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(132, 169, 140, 0.2);
+            padding-bottom: 12px;
+        }
+
+        .modal-header h3 {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-header h3 i {
+            color: var(--green-glow);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-main);
+        }
+
+        .service-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(132, 169, 140, 0.1);
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .service-item h4 {
+            font-size: 0.95rem;
+            color: var(--green-glow);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-item p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="profile-img-container">
+            <img src="IMAGEN2.jpg" alt="Foto de taller" class="profile-img">
+            <div class="status-dot" title="Taller Abierto"></div>
+        </div>
+
+   
+        <h1 class="profile-name">STEVEN BARAHONA</h1>
+        <p class="profile-title">Tu auto en buenas manos</p>
+        <p class="profile-bio">Diagnóstico preciso, trabajo de calidad y atención personalizada para que tu vehículo esté siempre óptimo.</p>
+
+        <div class="links-list">
+    
+            <a href="https://wa.me/50373309437?text=Hola,%20necesito%20cotizar%20un%20servicio%20para%20mi%20vehículo." target="_blank" class="btn-link btn-whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                <span>Cotiza por WhatsApp</span>
+            </a>
+            <button class="btn-link" onclick="openModal()">
+                <div class="left-content">
+                    <i class="fas fa-tools"></i>
+                    <span>Ver Servicios de Mecánica</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <a href="tel:+50373309437" class="btn-link">
+                <div class="left-content">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Llamar al Taller</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <a href="mailto:taller@ejemplo.com" class="btn-link">
+                <div class="left-content">
+                    <i class="fas fa-envelope"></i>
+                    <span>Enviar Correo</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+        <div class="social-icons">
+            <a href="#" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <div class="footer-note">
+            El Salvador 
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="servicesModal" onclick="outsideClick(event)">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-wrench"></i> Nuestros Servicios</h3>
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="service-item">
+                <h4><i class="fas fa-car-side"></i> Mecánica General</h4>
+                <p>Reparación y mantenimiento preventivo y correctivo para todo tipo de vehículos.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-gauge-high"></i> Frenos</h4>
+                <p>Cambio de balatas, rectificación de discos, revisión de líquido y sistema ABS.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-oil-can"></i> Cambio de Aceite</h4>
+                <p>Reemplazo de aceite de motor y filtros para un mejor rendimiento.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-sliders"></i> Suspensión y Dirección</h4>
+                <p>Amortiguadores, rotulas, terminales para mayor estabilidad y seguridad.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-laptop-code"></i> Diagnóstico Electrónico</h4>
+                <p>Escaneo computarizado avanzado y solución de fallas electrónicas.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-car-battery"></i> Sistema Eléctrico</h4>
+                <p>Revisión y mantenimiento de baterías, alternadores, luces y arranque.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-temperature-low"></i> Sistema de Enfriamiento</h4>
+                <p>Mantenimiento de radiadores, mangueras, termostatos y anticongelante.</p>
+            </div>
+
+            <div class="service-item">
+                <h4><i class="fas fa-circle-dot"></i> Neumáticos y Llantas</h4>
+                <p>Cambio, balanceo y alineación para cuidar tus ruedas.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('servicesModal');
+
+        function openModal() {
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function outsideClick(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
